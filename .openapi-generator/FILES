@@ -2,6 +2,7 @@
 .gitlab-ci.yml
 .travis.yml
 README.md
+Taskfile.yml
 docs/Account.md
 docs/AccountCursor.md
 docs/AccountCursorAllOf.md
