@@ -21,6 +21,8 @@ from ledgerclient.model.contract import Contract
 from ledgerclient.model.create_transaction_response import CreateTransactionResponse
 from ledgerclient.model.cursor import Cursor
 from ledgerclient.model.cursor_response import CursorResponse
+from ledgerclient.model.error_code import ErrorCode
+from ledgerclient.model.error_response import ErrorResponse
 from ledgerclient.model.ledger_storage import LedgerStorage
 from ledgerclient.model.mapping import Mapping
 from ledgerclient.model.mapping_response import MappingResponse
@@ -31,6 +33,9 @@ from ledgerclient.model.script_result import ScriptResult
 from ledgerclient.model.stats import Stats
 from ledgerclient.model.stats_response import StatsResponse
 from ledgerclient.model.transaction import Transaction
+from ledgerclient.model.transaction_commit_error import TransactionCommitError
+from ledgerclient.model.transaction_commit_error_all_of import TransactionCommitErrorAllOf
+from ledgerclient.model.transaction_commit_error_response import TransactionCommitErrorResponse
 from ledgerclient.model.transaction_cursor import TransactionCursor
 from ledgerclient.model.transaction_cursor_all_of import TransactionCursorAllOf
 from ledgerclient.model.transaction_cursor_response import TransactionCursorResponse

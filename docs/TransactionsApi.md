@@ -106,6 +106,7 @@ Create a new ledger transaction Commit a new transaction to the ledger
 import time
 import ledgerclient
 from ledgerclient.api import transactions_api
+from ledgerclient.model.error_response import ErrorResponse
 from ledgerclient.model.transaction_data import TransactionData
 from ledgerclient.model.create_transaction_response import CreateTransactionResponse
 from pprint import pprint
@@ -170,6 +171,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Commit error |  -  |
+**409** | Confict |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -189,6 +192,7 @@ import ledgerclient
 from ledgerclient.api import transactions_api
 from ledgerclient.model.transactions import Transactions
 from ledgerclient.model.transaction_list_response import TransactionListResponse
+from ledgerclient.model.transaction_commit_error_response import TransactionCommitErrorResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -273,6 +277,7 @@ Get transaction by transaction id
 import time
 import ledgerclient
 from ledgerclient.api import transactions_api
+from ledgerclient.model.error_response import ErrorResponse
 from ledgerclient.model.transaction_response import TransactionResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
