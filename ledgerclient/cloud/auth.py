@@ -3,11 +3,8 @@ import json
 from ledgerclient import rest
 from ledgerclient.configuration import Configuration
 
-StagingAuthEndpoint = "https://api.staging.numary.cloud/auth/authenticate/tokens"
-ProdAuthEndpoint = "https://api.numary.cloud/auth/authenticate/tokens"
-
-StagingLedgerEndpoint = "https://api.staging.numary.cloud/ledger"
-ProdLedgerEndpoint = "https://api.numary.cloud/auth/ledger"
+AuthEndpoint = "https://api.numary.cloud/auth/authenticate/tokens"
+LedgerEndpoint = "https://api.numary.cloud/auth/ledger"
 
 
 class TokenFetcher(object):

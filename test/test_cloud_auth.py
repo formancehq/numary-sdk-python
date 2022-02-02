@@ -10,17 +10,17 @@ import unittest
 
 from ledgerclient import ApiClient, Configuration
 from ledgerclient.api.transactions_api import TransactionsApi  # noqa: E501
-from ledgerclient.cloud.auth import TokenFetcher, StagingAuthEndpoint, StagingLedgerEndpoint
+from ledgerclient.cloud.auth import TokenFetcher
 
 
 class TestTransactionsApi(unittest.TestCase):
     """TransactionsApi unit test stubs"""
 
     def setUp(self):
-        fetcher = TokenFetcher(url=StagingAuthEndpoint, token="YjgyY2ZjMDktNjZmYi.OWFhNWNjOGQtMTNlMS")
+        fetcher = TokenFetcher(url="https://api.staging.numary.cloud/auth/authenticate/tokens", token="YjgyY2ZjMDktNjZmYi.OWFhNWNjOGQtMTNlMS")
         config = Configuration()
         config.access_token = fetcher.fetch_token()
-        config.host = StagingLedgerEndpoint
+        config.host = "https://api.staging.numary.cloud/ledger"
         client = ApiClient(config)
         self.api = TransactionsApi(client)  # noqa: E501
         self.ledger = "tirelire-88550a7f"

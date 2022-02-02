@@ -169,12 +169,12 @@ Library provide utility to fetch access token, example :
 ```python
 from ledgerclient import ApiClient, Configuration
 from ledgerclient.api.transactions_api import TransactionsApi
-from ledgerclient.cloud.auth import TokenFetcher, StagingAuthEndpoint, StagingLedgerEndpoint
+from ledgerclient.cloud.auth import TokenFetcher, AuthEndpoint, LedgerEndpoint
 
-fetcher = TokenFetcher(StagingAuthEndpoint, "API KEY")
+fetcher = TokenFetcher(AuthEndpoint, "API KEY")
 config = Configuration()
 config.access_token = fetcher.fetch_token()
-config.host = StagingLedgerEndpoint
+config.host = LedgerEndpoint
 client = ApiClient(config)
 api = TransactionsApi(client)
 ```
