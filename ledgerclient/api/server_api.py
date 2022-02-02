@@ -38,7 +38,10 @@ class ServerApi(object):
         self.get_info_endpoint = _Endpoint(
             settings={
                 'response_type': (ConfigInfoResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/_info',
                 'operation_id': 'get_info',
                 'http_method': 'GET',

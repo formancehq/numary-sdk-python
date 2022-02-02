@@ -38,7 +38,10 @@ class StatsApi(object):
         self.read_stats_endpoint = _Endpoint(
             settings={
                 'response_type': (StatsResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/stats',
                 'operation_id': 'read_stats',
                 'http_method': 'GET',

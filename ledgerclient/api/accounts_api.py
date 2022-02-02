@@ -40,7 +40,10 @@ class AccountsApi(object):
         self.add_metadata_to_account_endpoint = _Endpoint(
             settings={
                 'response_type': None,
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/accounts/{accountId}/metadata',
                 'operation_id': 'add_metadata_to_account',
                 'http_method': 'POST',
@@ -101,7 +104,10 @@ class AccountsApi(object):
         self.get_account_endpoint = _Endpoint(
             settings={
                 'response_type': (AccountResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/accounts/{accountId}',
                 'operation_id': 'get_account',
                 'http_method': 'GET',
@@ -156,7 +162,10 @@ class AccountsApi(object):
         self.list_accounts_endpoint = _Endpoint(
             settings={
                 'response_type': (AccountCursorResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/accounts',
                 'operation_id': 'list_accounts',
                 'http_method': 'GET',

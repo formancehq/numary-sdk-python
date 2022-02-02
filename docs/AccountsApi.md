@@ -16,6 +16,8 @@ Add metadata to account
 
 ### Example
 
+* Basic Authentication (basicAuth):
+* Bearer Authentication (cloudToken):
 
 ```python
 import time
@@ -29,9 +31,24 @@ configuration = ledgerclient.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: basicAuth
+configuration = ledgerclient.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization: cloudToken
+configuration = ledgerclient.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
-with ledgerclient.ApiClient() as api_client:
+with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = accounts_api.AccountsApi(api_client)
     ledger = "ledger_example" # str | ledger
@@ -63,7 +80,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth), [cloudToken](../README.md#cloudToken)
 
 ### HTTP request headers
 
@@ -87,6 +104,8 @@ Get account by address
 
 ### Example
 
+* Basic Authentication (basicAuth):
+* Bearer Authentication (cloudToken):
 
 ```python
 import time
@@ -100,9 +119,24 @@ configuration = ledgerclient.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: basicAuth
+configuration = ledgerclient.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization: cloudToken
+configuration = ledgerclient.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
-with ledgerclient.ApiClient() as api_client:
+with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = accounts_api.AccountsApi(api_client)
     ledger = "ledger_example" # str | ledger
@@ -131,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth), [cloudToken](../README.md#cloudToken)
 
 ### HTTP request headers
 
@@ -154,6 +188,8 @@ List all accounts
 
 ### Example
 
+* Basic Authentication (basicAuth):
+* Bearer Authentication (cloudToken):
 
 ```python
 import time
@@ -167,9 +203,24 @@ configuration = ledgerclient.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: basicAuth
+configuration = ledgerclient.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization: cloudToken
+configuration = ledgerclient.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
-with ledgerclient.ApiClient() as api_client:
+with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = accounts_api.AccountsApi(api_client)
     ledger = "ledger_example" # str | ledger
@@ -207,7 +258,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth), [cloudToken](../README.md#cloudToken)
 
 ### HTTP request headers
 

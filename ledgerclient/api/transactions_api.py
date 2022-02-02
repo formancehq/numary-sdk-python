@@ -46,7 +46,10 @@ class TransactionsApi(object):
         self.add_metadata_on_transaction_endpoint = _Endpoint(
             settings={
                 'response_type': None,
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/transactions/{txid}/metadata',
                 'operation_id': 'add_metadata_on_transaction',
                 'http_method': 'POST',
@@ -106,7 +109,10 @@ class TransactionsApi(object):
         self.create_transaction_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateTransactionResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/transactions',
                 'operation_id': 'create_transaction',
                 'http_method': 'POST',
@@ -162,7 +168,10 @@ class TransactionsApi(object):
         self.create_transactions_endpoint = _Endpoint(
             settings={
                 'response_type': (TransactionListResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/transactions/batch',
                 'operation_id': 'create_transactions',
                 'http_method': 'POST',
@@ -218,7 +227,10 @@ class TransactionsApi(object):
         self.get_transaction_endpoint = _Endpoint(
             settings={
                 'response_type': (TransactionResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/transactions/{txid}',
                 'operation_id': 'get_transaction',
                 'http_method': 'GET',
@@ -273,7 +285,10 @@ class TransactionsApi(object):
         self.list_transactions_endpoint = _Endpoint(
             settings={
                 'response_type': (TransactionCursorResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/transactions',
                 'operation_id': 'list_transactions',
                 'http_method': 'GET',
@@ -337,7 +352,10 @@ class TransactionsApi(object):
         self.revert_transaction_endpoint = _Endpoint(
             settings={
                 'response_type': None,
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/transactions/{txid}/revert',
                 'operation_id': 'revert_transaction',
                 'http_method': 'POST',

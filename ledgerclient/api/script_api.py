@@ -39,7 +39,10 @@ class ScriptApi(object):
         self.run_script_endpoint = _Endpoint(
             settings={
                 'response_type': (ScriptResult,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/script',
                 'operation_id': 'run_script',
                 'http_method': 'POST',

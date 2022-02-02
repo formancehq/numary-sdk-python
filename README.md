@@ -59,6 +59,21 @@ configuration = ledgerclient.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: basicAuth
+configuration = ledgerclient.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Configure Bearer authorization: cloudToken
+configuration = ledgerclient.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 
 # Enter a context with an instance of the API client
@@ -140,7 +155,30 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
- All endpoints do not require authorization.
+
+## basicAuth
+
+- **Type**: HTTP basic authentication
+
+
+## cloudToken
+
+- **Type**: Bearer authentication
+
+Library provide utility to fetch access token, example :
+```python
+from ledgerclient import ApiClient, Configuration
+from ledgerclient.api.transactions_api import TransactionsApi
+from ledgerclient.cloud.auth import TokenFetcher, StagingAuthEndpoint, StagingLedgerEndpoint
+
+fetcher = TokenFetcher(StagingAuthEndpoint, "API KEY")
+config = Configuration()
+config.access_token = fetcher.fetch_token()
+config.host = StagingLedgerEndpoint
+client = ApiClient(config)
+api = TransactionsApi(client)
+```
+
 
 ## Author
 

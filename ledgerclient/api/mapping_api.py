@@ -39,7 +39,10 @@ class MappingApi(object):
         self.get_mapping_endpoint = _Endpoint(
             settings={
                 'response_type': (MappingResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/mapping',
                 'operation_id': 'get_mapping',
                 'http_method': 'GET',
@@ -88,7 +91,10 @@ class MappingApi(object):
         self.update_mapping_endpoint = _Endpoint(
             settings={
                 'response_type': (MappingResponse,),
-                'auth': [],
+                'auth': [
+                    'basicAuth',
+                    'cloudToken'
+                ],
                 'endpoint_path': '/{ledger}/mapping',
                 'operation_id': 'update_mapping',
                 'http_method': 'PUT',
