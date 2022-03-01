@@ -168,11 +168,21 @@ with ledgerclient.ApiClient(configuration) as api_client:
         ],
         reference="reference_example",
     ) # TransactionData | transaction
+    preview = "preview_example" # str | Preview mode (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Create Transaction
         api_response = api_instance.create_transaction(ledger, transaction_data)
+        pprint(api_response)
+    except ledgerclient.ApiException as e:
+        print("Exception when calling TransactionsApi->create_transaction: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create Transaction
+        api_response = api_instance.create_transaction(ledger, transaction_data, preview=preview)
         pprint(api_response)
     except ledgerclient.ApiException as e:
         print("Exception when calling TransactionsApi->create_transaction: %s\n" % e)
@@ -185,6 +195,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ledger** | **str**| ledger |
  **transaction_data** | [**TransactionData**](TransactionData.md)| transaction |
+ **preview** | **str**| Preview mode | [optional]
 
 ### Return type
 
@@ -205,6 +216,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**304** | Not modified (when preview is enabled) |  -  |
 **400** | Commit error |  -  |
 **409** | Confict |  -  |
 
@@ -502,7 +514,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revert_transaction**
-> revert_transaction(ledger, txid)
+> TransactionResponse revert_transaction(ledger, txid)
 
 Revert Transaction
 
@@ -517,6 +529,7 @@ Revert a ledger transaction by transaction id
 import time
 import ledgerclient
 from ledgerclient.api import transactions_api
+from ledgerclient.model.transaction_response import TransactionResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -550,7 +563,8 @@ with ledgerclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Revert Transaction
-        api_instance.revert_transaction(ledger, txid)
+        api_response = api_instance.revert_transaction(ledger, txid)
+        pprint(api_response)
     except ledgerclient.ApiException as e:
         print("Exception when calling TransactionsApi->revert_transaction: %s\n" % e)
 ```
@@ -565,7 +579,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**TransactionResponse**](TransactionResponse.md)
 
 ### Authorization
 
@@ -574,14 +588,14 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty response |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

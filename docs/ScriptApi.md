@@ -57,11 +57,21 @@ with ledgerclient.ApiClient(configuration) as api_client:
         plain="plain_example",
         vars={},
     ) # Script | script
+    preview = True # bool | Preview mode (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Execute Numscript
         api_response = api_instance.run_script(ledger, script)
+        pprint(api_response)
+    except ledgerclient.ApiException as e:
+        print("Exception when calling ScriptApi->run_script: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Execute Numscript
+        api_response = api_instance.run_script(ledger, script, preview=preview)
         pprint(api_response)
     except ledgerclient.ApiException as e:
         print("Exception when calling ScriptApi->run_script: %s\n" % e)
@@ -74,6 +84,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ledger** | **str**| ledger |
  **script** | [**Script**](Script.md)| script |
+ **preview** | **bool**| Preview mode | [optional]
 
 ### Return type
 
