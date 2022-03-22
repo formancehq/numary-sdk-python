@@ -22,7 +22,6 @@ Set a new metadata to a ledger transaction by transaction id
 ### Example
 
 * Basic Authentication (basicAuth):
-* Bearer Authentication (cloudToken):
 
 ```python
 import time
@@ -45,11 +44,6 @@ configuration = ledgerclient.Configuration(
 configuration = ledgerclient.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization: cloudToken
-configuration = ledgerclient.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
@@ -93,7 +87,7 @@ void (empty response body)
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth), [cloudToken](../README.md#cloudToken)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
@@ -119,7 +113,6 @@ Create a new ledger transaction Commit a new transaction to the ledger
 ### Example
 
 * Basic Authentication (basicAuth):
-* Bearer Authentication (cloudToken):
 
 ```python
 import time
@@ -146,11 +139,6 @@ configuration = ledgerclient.Configuration(
     password = 'YOUR_PASSWORD'
 )
 
-# Configure Bearer authorization: cloudToken
-configuration = ledgerclient.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Enter a context with an instance of the API client
 with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -168,7 +156,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
         ],
         reference="reference_example",
     ) # TransactionData | transaction
-    preview = "preview_example" # str | Preview mode (optional)
+    preview = True # bool | Preview mode (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -195,7 +183,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ledger** | **str**| ledger |
  **transaction_data** | [**TransactionData**](TransactionData.md)| transaction |
- **preview** | **str**| Preview mode | [optional]
+ **preview** | **bool**| Preview mode | [optional]
 
 ### Return type
 
@@ -203,7 +191,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth), [cloudToken](../README.md#cloudToken)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
@@ -232,7 +220,6 @@ Create a new ledger transactions batch Commit a batch of new transactions to the
 ### Example
 
 * Basic Authentication (basicAuth):
-* Bearer Authentication (cloudToken):
 
 ```python
 import time
@@ -257,11 +244,6 @@ configuration = ledgerclient.Configuration(
 configuration = ledgerclient.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization: cloudToken
-configuration = ledgerclient.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
@@ -309,7 +291,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth), [cloudToken](../README.md#cloudToken)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
@@ -336,7 +318,6 @@ Get transaction by transaction id
 ### Example
 
 * Basic Authentication (basicAuth):
-* Bearer Authentication (cloudToken):
 
 ```python
 import time
@@ -360,11 +341,6 @@ configuration = ledgerclient.Configuration(
 configuration = ledgerclient.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization: cloudToken
-configuration = ledgerclient.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
@@ -397,7 +373,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth), [cloudToken](../README.md#cloudToken)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
@@ -424,7 +400,6 @@ Get all ledger transactions
 ### Example
 
 * Basic Authentication (basicAuth):
-* Bearer Authentication (cloudToken):
 
 ```python
 import time
@@ -447,11 +422,6 @@ configuration = ledgerclient.Configuration(
 configuration = ledgerclient.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization: cloudToken
-configuration = ledgerclient.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
@@ -497,7 +467,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth), [cloudToken](../README.md#cloudToken)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
@@ -523,7 +493,6 @@ Revert a ledger transaction by transaction id
 ### Example
 
 * Basic Authentication (basicAuth):
-* Bearer Authentication (cloudToken):
 
 ```python
 import time
@@ -546,11 +515,6 @@ configuration = ledgerclient.Configuration(
 configuration = ledgerclient.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
-)
-
-# Configure Bearer authorization: cloudToken
-configuration = ledgerclient.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
 )
 
 # Enter a context with an instance of the API client
@@ -583,7 +547,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth), [cloudToken](../README.md#cloudToken)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
