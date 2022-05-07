@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_metadata_on_transaction**](TransactionsApi.md#add_metadata_on_transaction) | **POST** /{ledger}/transactions/{txid}/metadata | Set Transaction Metadata
+[**count_transactions**](TransactionsApi.md#count_transactions) | **HEAD** /{ledger}/transactions | Count transactions
 [**create_transaction**](TransactionsApi.md#create_transaction) | **POST** /{ledger}/transactions | Create Transaction
 [**create_transactions**](TransactionsApi.md#create_transactions) | **POST** /{ledger}/transactions/batch | Create Transactions Batch
 [**get_transaction**](TransactionsApi.md#get_transaction) | **GET** /{ledger}/transactions/{txid} | Get Transaction
@@ -100,6 +101,100 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **count_transactions**
+> count_transactions(ledger)
+
+Count transactions
+
+Count transactions mathing given criteria
+
+### Example
+
+* Basic Authentication (basicAuth):
+
+```python
+import time
+import ledgerclient
+from ledgerclient.api import transactions_api
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ledgerclient.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: basicAuth
+configuration = ledgerclient.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Enter a context with an instance of the API client
+with ledgerclient.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = transactions_api.TransactionsApi(api_client)
+    ledger = "ledger_example" # str | ledger
+    after = "after_example" # str | pagination cursor, will return transactions after given txid (in descending order) (optional)
+    reference = "reference_example" # str | find transactions by reference field (optional)
+    account = "account_example" # str | find transactions with postings involving given account, either as source or destination (optional)
+    source = "source_example" # str | find transactions with postings involving given account at source (optional)
+    destination = "destination_example" # str | find transactions with postings involving given account at destination (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Count transactions
+        api_instance.count_transactions(ledger)
+    except ledgerclient.ApiException as e:
+        print("Exception when calling TransactionsApi->count_transactions: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Count transactions
+        api_instance.count_transactions(ledger, after=after, reference=reference, account=account, source=source, destination=destination)
+    except ledgerclient.ApiException as e:
+        print("Exception when calling TransactionsApi->count_transactions: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ledger** | **str**| ledger |
+ **after** | **str**| pagination cursor, will return transactions after given txid (in descending order) | [optional]
+ **reference** | **str**| find transactions by reference field | [optional]
+ **account** | **str**| find transactions with postings involving given account, either as source or destination | [optional]
+ **source** | **str**| find transactions with postings involving given account at source | [optional]
+ **destination** | **str**| find transactions with postings involving given account at destination | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  * Count -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -225,9 +320,9 @@ Create a new ledger transactions batch Commit a batch of new transactions to the
 import time
 import ledgerclient
 from ledgerclient.api import transactions_api
+from ledgerclient.model.error_response import ErrorResponse
 from ledgerclient.model.transactions import Transactions
 from ledgerclient.model.transaction_list_response import TransactionListResponse
-from ledgerclient.model.transaction_commit_error_response import TransactionCommitErrorResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -304,7 +399,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** |  |  -  |
+**400** | Commit error |  -  |
+**409** | Confict |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -432,6 +528,8 @@ with ledgerclient.ApiClient(configuration) as api_client:
     after = "after_example" # str | pagination cursor, will return transactions after given txid (in descending order) (optional)
     reference = "reference_example" # str | find transactions by reference field (optional)
     account = "account_example" # str | find transactions with postings involving given account, either as source or destination (optional)
+    source = "source_example" # str | find transactions with postings involving given account at source (optional)
+    destination = "destination_example" # str | find transactions with postings involving given account at destination (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -445,7 +543,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Get all Transactions
-        api_response = api_instance.list_transactions(ledger, after=after, reference=reference, account=account)
+        api_response = api_instance.list_transactions(ledger, after=after, reference=reference, account=account, source=source, destination=destination)
         pprint(api_response)
     except ledgerclient.ApiException as e:
         print("Exception when calling TransactionsApi->list_transactions: %s\n" % e)
@@ -460,6 +558,8 @@ Name | Type | Description  | Notes
  **after** | **str**| pagination cursor, will return transactions after given txid (in descending order) | [optional]
  **reference** | **str**| find transactions by reference field | [optional]
  **account** | **str**| find transactions with postings involving given account, either as source or destination | [optional]
+ **source** | **str**| find transactions with postings involving given account at source | [optional]
+ **destination** | **str**| find transactions with postings involving given account at destination | [optional]
 
 ### Return type
 

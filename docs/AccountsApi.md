@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_metadata_to_account**](AccountsApi.md#add_metadata_to_account) | **POST** /{ledger}/accounts/{accountId}/metadata | Add metadata to account
+[**count_accounts**](AccountsApi.md#count_accounts) | **HEAD** /{ledger}/accounts | Count accounts
 [**get_account**](AccountsApi.md#get_account) | **GET** /{ledger}/accounts/{accountId} | Get account by address
 [**list_accounts**](AccountsApi.md#list_accounts) | **GET** /{ledger}/accounts | List all accounts
 
@@ -88,6 +89,96 @@ void (empty response body)
 |-------------|-------------|------------------|
 **204** | Empty response |  -  |
 **400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **count_accounts**
+> count_accounts(ledger)
+
+Count accounts
+
+### Example
+
+* Basic Authentication (basicAuth):
+
+```python
+import time
+import ledgerclient
+from ledgerclient.api import accounts_api
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ledgerclient.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: basicAuth
+configuration = ledgerclient.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
+
+# Enter a context with an instance of the API client
+with ledgerclient.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = accounts_api.AccountsApi(api_client)
+    ledger = "ledger_example" # str | ledger
+    after = "after_example" # str | pagination cursor, will return accounts after given address (in descending order) (optional)
+    address = "address_example" # str | account address (optional)
+    metadata = {
+        "key": "key_example",
+    } # {str: (str,)} | metadata (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Count accounts
+        api_instance.count_accounts(ledger)
+    except ledgerclient.ApiException as e:
+        print("Exception when calling AccountsApi->count_accounts: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Count accounts
+        api_instance.count_accounts(ledger, after=after, address=address, metadata=metadata)
+    except ledgerclient.ApiException as e:
+        print("Exception when calling AccountsApi->count_accounts: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ledger** | **str**| ledger |
+ **after** | **str**| pagination cursor, will return accounts after given address (in descending order) | [optional]
+ **address** | **str**| account address | [optional]
+ **metadata** | **{str: (str,)}**| metadata | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  * Count -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -207,6 +298,10 @@ with ledgerclient.ApiClient(configuration) as api_client:
     api_instance = accounts_api.AccountsApi(api_client)
     ledger = "ledger_example" # str | ledger
     after = "after_example" # str | pagination cursor, will return accounts after given address (in descending order) (optional)
+    address = "address_example" # str | account address (optional)
+    metadata = {
+        "key": "key_example",
+    } # {str: (str,)} | account address (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -220,7 +315,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # List all accounts
-        api_response = api_instance.list_accounts(ledger, after=after)
+        api_response = api_instance.list_accounts(ledger, after=after, address=address, metadata=metadata)
         pprint(api_response)
     except ledgerclient.ApiException as e:
         print("Exception when calling AccountsApi->list_accounts: %s\n" % e)
@@ -233,6 +328,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ledger** | **str**| ledger |
  **after** | **str**| pagination cursor, will return accounts after given address (in descending order) | [optional]
+ **address** | **str**| account address | [optional]
+ **metadata** | **{str: (str,)}**| account address | [optional]
 
 ### Return type
 

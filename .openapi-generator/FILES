@@ -33,9 +33,6 @@ docs/Stats.md
 docs/StatsApi.md
 docs/StatsResponse.md
 docs/Transaction.md
-docs/TransactionCommitError.md
-docs/TransactionCommitErrorAllOf.md
-docs/TransactionCommitErrorResponse.md
 docs/TransactionCursor.md
 docs/TransactionCursorAllOf.md
 docs/TransactionCursorResponse.md
@@ -81,9 +78,6 @@ ledgerclient/model/script_result.py
 ledgerclient/model/stats.py
 ledgerclient/model/stats_response.py
 ledgerclient/model/transaction.py
-ledgerclient/model/transaction_commit_error.py
-ledgerclient/model/transaction_commit_error_all_of.py
-ledgerclient/model/transaction_commit_error_response.py
 ledgerclient/model/transaction_cursor.py
 ledgerclient/model/transaction_cursor_all_of.py
 ledgerclient/model/transaction_cursor_response.py
