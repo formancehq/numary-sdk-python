@@ -95,14 +95,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_account_with_volumes_and_balances.py
-test/test_create_transactions200_response.py
-test/test_create_transactions200_response_all_of.py
-test/test_get_account200_response.py
-test/test_list_accounts200_response.py
-test/test_list_accounts200_response_cursor.py
-test/test_list_accounts200_response_cursor_all_of.py
-test/test_list_transactions200_response.py
-test/test_list_transactions200_response_cursor.py
-test/test_list_transactions200_response_cursor_all_of.py
 tox.ini
