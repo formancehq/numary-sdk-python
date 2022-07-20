@@ -153,9 +153,8 @@ class MappingApi(object):
         ledger,
         **kwargs
     ):
-        """Get mapping  # noqa: E501
+        """Get the mapping of a ledger.  # noqa: E501
 
-        Get ledger mapping  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -163,7 +162,7 @@ class MappingApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
+            ledger (str): Name of the ledger.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -225,9 +224,8 @@ class MappingApi(object):
         mapping,
         **kwargs
     ):
-        """Put mapping  # noqa: E501
+        """Update the mapping of a ledger.  # noqa: E501
 
-        Update ledger mapping  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -235,8 +233,8 @@ class MappingApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
-            mapping (Mapping): mapping
+            ledger (str): Name of the ledger.
+            mapping (Mapping):
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status

@@ -1,12 +1,12 @@
-# Account
+# ListAccounts200ResponseCursor
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | **str** |  | 
-**type** | **str** |  | [optional] 
-**metadata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**page_size** | **int** |  | 
+**has_more** | **bool** |  | 
+**data** | [**[Account]**](Account.md) |  | 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

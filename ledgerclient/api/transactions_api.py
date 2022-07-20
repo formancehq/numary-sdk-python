@@ -23,11 +23,11 @@ from ledgerclient.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from ledgerclient.model.create_transaction_response import CreateTransactionResponse
+from ledgerclient.model.create_transactions200_response import CreateTransactions200Response
 from ledgerclient.model.error_response import ErrorResponse
+from ledgerclient.model.list_transactions200_response import ListTransactions200Response
 from ledgerclient.model.metadata import Metadata
-from ledgerclient.model.transaction_cursor_response import TransactionCursorResponse
 from ledgerclient.model.transaction_data import TransactionData
-from ledgerclient.model.transaction_list_response import TransactionListResponse
 from ledgerclient.model.transaction_response import TransactionResponse
 from ledgerclient.model.transactions import Transactions
 
@@ -119,7 +119,6 @@ class TransactionsApi(object):
             params_map={
                 'all': [
                     'ledger',
-                    'after',
                     'reference',
                     'account',
                     'source',
@@ -143,8 +142,6 @@ class TransactionsApi(object):
                 'openapi_types': {
                     'ledger':
                         (str,),
-                    'after':
-                        (str,),
                     'reference':
                         (str,),
                     'account':
@@ -156,7 +153,6 @@ class TransactionsApi(object):
                 },
                 'attribute_map': {
                     'ledger': 'ledger',
-                    'after': 'after',
                     'reference': 'reference',
                     'account': 'account',
                     'source': 'source',
@@ -164,7 +160,6 @@ class TransactionsApi(object):
                 },
                 'location_map': {
                     'ledger': 'path',
-                    'after': 'query',
                     'reference': 'query',
                     'account': 'query',
                     'source': 'query',
@@ -244,7 +239,7 @@ class TransactionsApi(object):
         )
         self.create_transactions_endpoint = _Endpoint(
             settings={
-                'response_type': (TransactionListResponse,),
+                'response_type': (CreateTransactions200Response,),
                 'auth': [
                     'basicAuth'
                 ],
@@ -359,7 +354,7 @@ class TransactionsApi(object):
         )
         self.list_transactions_endpoint = _Endpoint(
             settings={
-                'response_type': (TransactionCursorResponse,),
+                'response_type': (ListTransactions200Response,),
                 'auth': [
                     'basicAuth'
                 ],
@@ -376,6 +371,8 @@ class TransactionsApi(object):
                     'account',
                     'source',
                     'destination',
+                    'start_time',
+                    'end_time',
                 ],
                 'required': [
                     'ledger',
@@ -405,6 +402,10 @@ class TransactionsApi(object):
                         (str,),
                     'destination':
                         (str,),
+                    'start_time':
+                        (str,),
+                    'end_time':
+                        (str,),
                 },
                 'attribute_map': {
                     'ledger': 'ledger',
@@ -413,6 +414,8 @@ class TransactionsApi(object):
                     'account': 'account',
                     'source': 'source',
                     'destination': 'destination',
+                    'start_time': 'start_time',
+                    'end_time': 'end_time',
                 },
                 'location_map': {
                     'ledger': 'path',
@@ -421,6 +424,8 @@ class TransactionsApi(object):
                     'account': 'query',
                     'source': 'query',
                     'destination': 'query',
+                    'start_time': 'query',
+                    'end_time': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -497,9 +502,8 @@ class TransactionsApi(object):
         txid,
         **kwargs
     ):
-        """Set Transaction Metadata  # noqa: E501
+        """Set the metadata of a transaction by its ID.  # noqa: E501
 
-        Set a new metadata to a ledger transaction by transaction id  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -507,8 +511,8 @@ class TransactionsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
-            txid (int): txid
+            ledger (str): Name of the ledger.
+            txid (int): Transaction ID.
 
         Keyword Args:
             metadata (Metadata): metadata. [optional]
@@ -572,9 +576,8 @@ class TransactionsApi(object):
         ledger,
         **kwargs
     ):
-        """Count transactions  # noqa: E501
+        """Count the transactions from a ledger.  # noqa: E501
 
-        Count transactions mathing given criteria  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -582,14 +585,13 @@ class TransactionsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
+            ledger (str): Name of the ledger.
 
         Keyword Args:
-            after (str): pagination cursor, will return transactions after given txid (in descending order). [optional]
-            reference (str): find transactions by reference field. [optional]
-            account (str): find transactions with postings involving given account, either as source or destination. [optional]
-            source (str): find transactions with postings involving given account at source. [optional]
-            destination (str): find transactions with postings involving given account at destination. [optional]
+            reference (str): Filter transactions by reference field.. [optional]
+            account (str): Filter transactions with postings involving given account, either as source or destination.. [optional]
+            source (str): Filter transactions with postings involving given account at source.. [optional]
+            destination (str): Filter transactions with postings involving given account at destination.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -649,9 +651,8 @@ class TransactionsApi(object):
         transaction_data,
         **kwargs
     ):
-        """Create Transaction  # noqa: E501
+        """Create a new transaction to a ledger.  # noqa: E501
 
-        Create a new ledger transaction Commit a new transaction to the ledger  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -659,11 +660,11 @@ class TransactionsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
-            transaction_data (TransactionData): transaction
+            ledger (str): Name of the ledger.
+            transaction_data (TransactionData):
 
         Keyword Args:
-            preview (bool): Preview mode. [optional]
+            preview (bool): Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -725,9 +726,8 @@ class TransactionsApi(object):
         transactions,
         **kwargs
     ):
-        """Create Transactions Batch  # noqa: E501
+        """Create a new batch of transactions to a ledger.  # noqa: E501
 
-        Create a new ledger transactions batch Commit a batch of new transactions to the ledger  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -735,8 +735,8 @@ class TransactionsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
-            transactions (Transactions): transactions
+            ledger (str): Name of the ledger.
+            transactions (Transactions):
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -763,7 +763,7 @@ class TransactionsApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            TransactionListResponse
+            CreateTransactions200Response
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -800,9 +800,8 @@ class TransactionsApi(object):
         txid,
         **kwargs
     ):
-        """Get Transaction  # noqa: E501
+        """Get transaction from a ledger by its ID.  # noqa: E501
 
-        Get transaction by transaction id  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -810,8 +809,8 @@ class TransactionsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
-            txid (int): txid
+            ledger (str): Name of the ledger.
+            txid (int): Transaction ID.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -874,9 +873,9 @@ class TransactionsApi(object):
         ledger,
         **kwargs
     ):
-        """Get all Transactions  # noqa: E501
+        """List transactions from a ledger.  # noqa: E501
 
-        Get all ledger transactions  # noqa: E501
+        List transactions from a ledger, sorted by txid in descending order.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -884,14 +883,16 @@ class TransactionsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
+            ledger (str): Name of the ledger.
 
         Keyword Args:
-            after (str): pagination cursor, will return transactions after given txid (in descending order). [optional]
-            reference (str): find transactions by reference field. [optional]
-            account (str): find transactions with postings involving given account, either as source or destination. [optional]
-            source (str): find transactions with postings involving given account at source. [optional]
-            destination (str): find transactions with postings involving given account at destination. [optional]
+            after (str): Pagination cursor, will return transactions after given txid (in descending order).. [optional]
+            reference (str): Find transactions by reference field.. [optional]
+            account (str): Find transactions with postings involving given account, either as source or destination.. [optional]
+            source (str): Find transactions with postings involving given account at source.. [optional]
+            destination (str): Find transactions with postings involving given account at destination.. [optional]
+            start_time (str): Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).. [optional]
+            end_time (str): Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -916,7 +917,7 @@ class TransactionsApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            TransactionCursorResponse
+            ListTransactions200Response
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -951,9 +952,8 @@ class TransactionsApi(object):
         txid,
         **kwargs
     ):
-        """Revert Transaction  # noqa: E501
+        """Revert a ledger transaction by its ID.  # noqa: E501
 
-        Revert a ledger transaction by transaction id  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -961,8 +961,8 @@ class TransactionsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
-            txid (int): txid
+            ledger (str): Name of the ledger.
+            txid (int): Transaction ID.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status

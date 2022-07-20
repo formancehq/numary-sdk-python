@@ -4,15 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_info**](ServerApi.md#get_info) | **GET** /_info | Server Info
+[**get_info**](ServerApi.md#get_info) | **GET** /_info | Show server information.
 
 
 # **get_info**
 > ConfigInfoResponse get_info()
 
-Server Info
-
-Show server informations
+Show server information.
 
 ### Example
 
@@ -48,7 +46,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Server Info
+        # Show server information.
         api_response = api_instance.get_info()
         pprint(api_response)
     except ledgerclient.ApiException as e:

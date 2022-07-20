@@ -45,7 +45,7 @@ configuration = ledgerclient.Configuration(
 with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = stats_api.StatsApi(api_client)
-    ledger = "ledger_example" # str | ledger
+    ledger = "ledger001" # str | name of the ledger
 
     # example passing only required values which don't have defaults set
     try:
@@ -61,7 +61,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ledger** | **str**| ledger |
+ **ledger** | **str**| name of the ledger |
 
 ### Return type
 

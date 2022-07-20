@@ -405,7 +405,7 @@ conf = ledgerclient.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 1.0\n"\
-               "SDK Package Version: v1.4.2".\
+               "SDK Package Version: v1.5.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):

@@ -103,7 +103,7 @@ class StatsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
+            ledger (str): name of the ledger
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status

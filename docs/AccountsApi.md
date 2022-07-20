@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_metadata_to_account**](AccountsApi.md#add_metadata_to_account) | **POST** /{ledger}/accounts/{accountId}/metadata | Add metadata to account
-[**count_accounts**](AccountsApi.md#count_accounts) | **HEAD** /{ledger}/accounts | Count accounts
-[**get_account**](AccountsApi.md#get_account) | **GET** /{ledger}/accounts/{accountId} | Get account by address
-[**list_accounts**](AccountsApi.md#list_accounts) | **GET** /{ledger}/accounts | List all accounts
+[**add_metadata_to_account**](AccountsApi.md#add_metadata_to_account) | **POST** /{ledger}/accounts/{address}/metadata | Add metadata to an account.
+[**count_accounts**](AccountsApi.md#count_accounts) | **HEAD** /{ledger}/accounts | Count the accounts from a ledger.
+[**get_account**](AccountsApi.md#get_account) | **GET** /{ledger}/accounts/{address} | Get account by its address.
+[**list_accounts**](AccountsApi.md#list_accounts) | **GET** /{ledger}/accounts | List accounts from a ledger.
 
 
 # **add_metadata_to_account**
-> add_metadata_to_account(ledger, account_id, metadata)
+> add_metadata_to_account(ledger, address, metadata)
 
-Add metadata to account
+Add metadata to an account.
 
 ### Example
 
@@ -46,16 +46,16 @@ configuration = ledgerclient.Configuration(
 with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = accounts_api.AccountsApi(api_client)
-    ledger = "ledger_example" # str | ledger
-    account_id = "accountId_example" # str | accountId
+    ledger = "ledger001" # str | Name of the ledger.
+    address = "users:001" # str | Exact address of the account.
     metadata = Metadata(
         key=None,
     ) # Metadata | metadata
 
     # example passing only required values which don't have defaults set
     try:
-        # Add metadata to account
-        api_instance.add_metadata_to_account(ledger, account_id, metadata)
+        # Add metadata to an account.
+        api_instance.add_metadata_to_account(ledger, address, metadata)
     except ledgerclient.ApiException as e:
         print("Exception when calling AccountsApi->add_metadata_to_account: %s\n" % e)
 ```
@@ -65,8 +65,8 @@ with ledgerclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ledger** | **str**| ledger |
- **account_id** | **str**| accountId |
+ **ledger** | **str**| Name of the ledger. |
+ **address** | **str**| Exact address of the account. |
  **metadata** | [**Metadata**](Metadata.md)| metadata |
 
 ### Return type
@@ -95,7 +95,7 @@ void (empty response body)
 # **count_accounts**
 > count_accounts(ledger)
 
-Count accounts
+Count the accounts from a ledger.
 
 ### Example
 
@@ -127,16 +127,13 @@ configuration = ledgerclient.Configuration(
 with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = accounts_api.AccountsApi(api_client)
-    ledger = "ledger_example" # str | ledger
-    after = "after_example" # str | pagination cursor, will return accounts after given address (in descending order) (optional)
-    address = "address_example" # str | account address (optional)
-    metadata = {
-        "key": "key_example",
-    } # {str: (str,)} | metadata (optional)
+    ledger = "ledger001" # str | Name of the ledger.
+    address = "users:.+" # str | Filter accounts by address pattern (regular expression placed between ^ and $). (optional)
+    metadata = {} # {str: (bool, date, datetime, dict, float, int, list, str, none_type)} | Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below. (optional)
 
     # example passing only required values which don't have defaults set
     try:
-        # Count accounts
+        # Count the accounts from a ledger.
         api_instance.count_accounts(ledger)
     except ledgerclient.ApiException as e:
         print("Exception when calling AccountsApi->count_accounts: %s\n" % e)
@@ -144,8 +141,8 @@ with ledgerclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Count accounts
-        api_instance.count_accounts(ledger, after=after, address=address, metadata=metadata)
+        # Count the accounts from a ledger.
+        api_instance.count_accounts(ledger, address=address, metadata=metadata)
     except ledgerclient.ApiException as e:
         print("Exception when calling AccountsApi->count_accounts: %s\n" % e)
 ```
@@ -155,10 +152,9 @@ with ledgerclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ledger** | **str**| ledger |
- **after** | **str**| pagination cursor, will return accounts after given address (in descending order) | [optional]
- **address** | **str**| account address | [optional]
- **metadata** | **{str: (str,)}**| metadata | [optional]
+ **ledger** | **str**| Name of the ledger. |
+ **address** | **str**| Filter accounts by address pattern (regular expression placed between ^ and $). | [optional]
+ **metadata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**| Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below. | [optional]
 
 ### Return type
 
@@ -183,9 +179,9 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_account**
-> AccountResponse get_account(ledger, account_id)
+> GetAccount200Response get_account(ledger, address)
 
-Get account by address
+Get account by its address.
 
 ### Example
 
@@ -195,7 +191,7 @@ Get account by address
 import time
 import ledgerclient
 from ledgerclient.api import accounts_api
-from ledgerclient.model.account_response import AccountResponse
+from ledgerclient.model.get_account200_response import GetAccount200Response
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -218,13 +214,13 @@ configuration = ledgerclient.Configuration(
 with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = accounts_api.AccountsApi(api_client)
-    ledger = "ledger_example" # str | ledger
-    account_id = "accountId_example" # str | accountId
+    ledger = "ledger001" # str | Name of the ledger.
+    address = "users:001" # str | Exact address of the account.
 
     # example passing only required values which don't have defaults set
     try:
-        # Get account by address
-        api_response = api_instance.get_account(ledger, account_id)
+        # Get account by its address.
+        api_response = api_instance.get_account(ledger, address)
         pprint(api_response)
     except ledgerclient.ApiException as e:
         print("Exception when calling AccountsApi->get_account: %s\n" % e)
@@ -235,12 +231,12 @@ with ledgerclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ledger** | **str**| ledger |
- **account_id** | **str**| accountId |
+ **ledger** | **str**| Name of the ledger. |
+ **address** | **str**| Exact address of the account. |
 
 ### Return type
 
-[**AccountResponse**](AccountResponse.md)
+[**GetAccount200Response**](GetAccount200Response.md)
 
 ### Authorization
 
@@ -261,9 +257,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_accounts**
-> AccountCursorResponse list_accounts(ledger)
+> ListAccounts200Response list_accounts(ledger)
 
-List all accounts
+List accounts from a ledger.
+
+List accounts from a ledger, sorted by address in descending order.
 
 ### Example
 
@@ -273,7 +271,7 @@ List all accounts
 import time
 import ledgerclient
 from ledgerclient.api import accounts_api
-from ledgerclient.model.account_cursor_response import AccountCursorResponse
+from ledgerclient.model.list_accounts200_response import ListAccounts200Response
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -296,16 +294,14 @@ configuration = ledgerclient.Configuration(
 with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = accounts_api.AccountsApi(api_client)
-    ledger = "ledger_example" # str | ledger
-    after = "after_example" # str | pagination cursor, will return accounts after given address (in descending order) (optional)
-    address = "address_example" # str | account address (optional)
-    metadata = {
-        "key": "key_example",
-    } # {str: (str,)} | account address (optional)
+    ledger = "ledger001" # str | Name of the ledger.
+    after = "users:003" # str | Pagination cursor, will return accounts after given address, in descending order. (optional)
+    address = "users:.+" # str | Filter accounts by address pattern (regular expression placed between ^ and $). (optional)
+    metadata = {} # {str: (bool, date, datetime, dict, float, int, list, str, none_type)} | Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below. (optional)
 
     # example passing only required values which don't have defaults set
     try:
-        # List all accounts
+        # List accounts from a ledger.
         api_response = api_instance.list_accounts(ledger)
         pprint(api_response)
     except ledgerclient.ApiException as e:
@@ -314,7 +310,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # List all accounts
+        # List accounts from a ledger.
         api_response = api_instance.list_accounts(ledger, after=after, address=address, metadata=metadata)
         pprint(api_response)
     except ledgerclient.ApiException as e:
@@ -326,14 +322,14 @@ with ledgerclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ledger** | **str**| ledger |
- **after** | **str**| pagination cursor, will return accounts after given address (in descending order) | [optional]
- **address** | **str**| account address | [optional]
- **metadata** | **{str: (str,)}**| account address | [optional]
+ **ledger** | **str**| Name of the ledger. |
+ **after** | **str**| Pagination cursor, will return accounts after given address, in descending order. | [optional]
+ **address** | **str**| Filter accounts by address pattern (regular expression placed between ^ and $). | [optional]
+ **metadata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**| Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below. | [optional]
 
 ### Return type
 
-[**AccountCursorResponse**](AccountCursorResponse.md)
+[**ListAccounts200Response**](ListAccounts200Response.md)
 
 ### Authorization
 

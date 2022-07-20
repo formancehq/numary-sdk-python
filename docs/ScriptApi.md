@@ -4,15 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**run_script**](ScriptApi.md#run_script) | **POST** /{ledger}/script | Execute Numscript
+[**run_script**](ScriptApi.md#run_script) | **POST** /{ledger}/script | Execute a Numscript.
 
 
 # **run_script**
 > ScriptResult run_script(ledger, script)
 
-Execute Numscript
-
-Execute a Numscript and create the transaction if any
+Execute a Numscript.
 
 ### Example
 
@@ -46,16 +44,23 @@ configuration = ledgerclient.Configuration(
 with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = script_api.ScriptApi(api_client)
-    ledger = "ledger_example" # str | ledger
+    ledger = "ledger001" # str | Name of the ledger.
     script = Script(
-        plain="plain_example",
+        plain='''vars {
+account $user
+}
+send [COIN 10] (
+	source = @world
+	destination = $user
+)
+''',
         vars={},
-    ) # Script | script
-    preview = True # bool | Preview mode (optional)
+    ) # Script | 
+    preview = True # bool | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker. (optional)
 
     # example passing only required values which don't have defaults set
     try:
-        # Execute Numscript
+        # Execute a Numscript.
         api_response = api_instance.run_script(ledger, script)
         pprint(api_response)
     except ledgerclient.ApiException as e:
@@ -64,7 +69,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Execute Numscript
+        # Execute a Numscript.
         api_response = api_instance.run_script(ledger, script, preview=preview)
         pprint(api_response)
     except ledgerclient.ApiException as e:
@@ -76,9 +81,9 @@ with ledgerclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ledger** | **str**| ledger |
- **script** | [**Script**](Script.md)| script |
- **preview** | **bool**| Preview mode | [optional]
+ **ledger** | **str**| Name of the ledger. |
+ **script** | [**Script**](Script.md)|  |
+ **preview** | **bool**| Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker. | [optional]
 
 ### Return type
 

@@ -11,7 +11,7 @@
 """
 
 
-__version__ = "v1.4.2"
+__version__ = "v1.5.0"
 
 # import ApiClient
 from ledgerclient.api_client import ApiClient

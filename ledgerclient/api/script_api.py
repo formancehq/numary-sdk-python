@@ -107,9 +107,8 @@ class ScriptApi(object):
         script,
         **kwargs
     ):
-        """Execute Numscript  # noqa: E501
+        """Execute a Numscript.  # noqa: E501
 
-        Execute a Numscript and create the transaction if any  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -117,11 +116,11 @@ class ScriptApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
-            script (Script): script
+            ledger (str): Name of the ledger.
+            script (Script):
 
         Keyword Args:
-            preview (bool): Preview mode. [optional]
+            preview (bool): Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

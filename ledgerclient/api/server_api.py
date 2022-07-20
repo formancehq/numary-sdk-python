@@ -85,9 +85,8 @@ class ServerApi(object):
         self,
         **kwargs
     ):
-        """Server Info  # noqa: E501
+        """Show server information.  # noqa: E501
 
-        Show server informations  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

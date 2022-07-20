@@ -93,8 +93,8 @@ class Transaction(ModelNormal):
             'postings': ([Posting],),  # noqa: E501
             'timestamp': (datetime,),  # noqa: E501
             'txid': (int,),  # noqa: E501
-            'metadata': (Metadata,),  # noqa: E501
             'reference': (str,),  # noqa: E501
+            'metadata': (Metadata,),  # noqa: E501
         }
 
     @cached_property
@@ -106,8 +106,8 @@ class Transaction(ModelNormal):
         'postings': 'postings',  # noqa: E501
         'timestamp': 'timestamp',  # noqa: E501
         'txid': 'txid',  # noqa: E501
-        'metadata': 'metadata',  # noqa: E501
         'reference': 'reference',  # noqa: E501
+        'metadata': 'metadata',  # noqa: E501
     }
 
     read_only_vars = {
@@ -156,8 +156,8 @@ class Transaction(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            metadata (Metadata): [optional]  # noqa: E501
             reference (str): [optional]  # noqa: E501
+            metadata (Metadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -247,8 +247,8 @@ class Transaction(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            metadata (Metadata): [optional]  # noqa: E501
             reference (str): [optional]  # noqa: E501
+            metadata (Metadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

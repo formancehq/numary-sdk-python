@@ -31,7 +31,9 @@ from ledgerclient.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from ledgerclient.model.metadata import Metadata
     from ledgerclient.model.posting import Posting
+    globals()['Metadata'] = Metadata
     globals()['Posting'] = Posting
 
 
@@ -89,8 +91,8 @@ class TransactionData(ModelNormal):
         lazy_import()
         return {
             'postings': ([Posting],),  # noqa: E501
-            'metadata': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'reference': (str,),  # noqa: E501
+            'metadata': (Metadata,),  # noqa: E501
         }
 
     @cached_property
@@ -100,8 +102,8 @@ class TransactionData(ModelNormal):
 
     attribute_map = {
         'postings': 'postings',  # noqa: E501
-        'metadata': 'metadata',  # noqa: E501
         'reference': 'reference',  # noqa: E501
+        'metadata': 'metadata',  # noqa: E501
     }
 
     read_only_vars = {
@@ -148,8 +150,8 @@ class TransactionData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             reference (str): [optional]  # noqa: E501
+            metadata (Metadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -235,8 +237,8 @@ class TransactionData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             reference (str): [optional]  # noqa: E501
+            metadata (Metadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

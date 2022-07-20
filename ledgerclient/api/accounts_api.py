@@ -22,8 +22,8 @@ from ledgerclient.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from ledgerclient.model.account_cursor_response import AccountCursorResponse
-from ledgerclient.model.account_response import AccountResponse
+from ledgerclient.model.get_account200_response import GetAccount200Response
+from ledgerclient.model.list_accounts200_response import ListAccounts200Response
 from ledgerclient.model.metadata import Metadata
 
 
@@ -44,7 +44,7 @@ class AccountsApi(object):
                 'auth': [
                     'basicAuth'
                 ],
-                'endpoint_path': '/{ledger}/accounts/{accountId}/metadata',
+                'endpoint_path': '/{ledger}/accounts/{address}/metadata',
                 'operation_id': 'add_metadata_to_account',
                 'http_method': 'POST',
                 'servers': None,
@@ -52,12 +52,12 @@ class AccountsApi(object):
             params_map={
                 'all': [
                     'ledger',
-                    'account_id',
+                    'address',
                     'metadata',
                 ],
                 'required': [
                     'ledger',
-                    'account_id',
+                    'address',
                     'metadata',
                 ],
                 'nullable': [
@@ -76,18 +76,18 @@ class AccountsApi(object):
                 'openapi_types': {
                     'ledger':
                         (str,),
-                    'account_id':
+                    'address':
                         (str,),
                     'metadata':
                         (Metadata,),
                 },
                 'attribute_map': {
                     'ledger': 'ledger',
-                    'account_id': 'accountId',
+                    'address': 'address',
                 },
                 'location_map': {
                     'ledger': 'path',
-                    'account_id': 'path',
+                    'address': 'path',
                     'metadata': 'body',
                 },
                 'collection_format_map': {
@@ -115,7 +115,6 @@ class AccountsApi(object):
             params_map={
                 'all': [
                     'ledger',
-                    'after',
                     'address',
                     'metadata',
                 ],
@@ -137,22 +136,18 @@ class AccountsApi(object):
                 'openapi_types': {
                     'ledger':
                         (str,),
-                    'after':
-                        (str,),
                     'address':
                         (str,),
                     'metadata':
-                        ({str: (str,)},),
+                        ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),
                 },
                 'attribute_map': {
                     'ledger': 'ledger',
-                    'after': 'after',
                     'address': 'address',
                     'metadata': 'metadata',
                 },
                 'location_map': {
                     'ledger': 'path',
-                    'after': 'query',
                     'address': 'query',
                     'metadata': 'query',
                 },
@@ -167,11 +162,11 @@ class AccountsApi(object):
         )
         self.get_account_endpoint = _Endpoint(
             settings={
-                'response_type': (AccountResponse,),
+                'response_type': (GetAccount200Response,),
                 'auth': [
                     'basicAuth'
                 ],
-                'endpoint_path': '/{ledger}/accounts/{accountId}',
+                'endpoint_path': '/{ledger}/accounts/{address}',
                 'operation_id': 'get_account',
                 'http_method': 'GET',
                 'servers': None,
@@ -179,11 +174,11 @@ class AccountsApi(object):
             params_map={
                 'all': [
                     'ledger',
-                    'account_id',
+                    'address',
                 ],
                 'required': [
                     'ledger',
-                    'account_id',
+                    'address',
                 ],
                 'nullable': [
                 ],
@@ -200,16 +195,16 @@ class AccountsApi(object):
                 'openapi_types': {
                     'ledger':
                         (str,),
-                    'account_id':
+                    'address':
                         (str,),
                 },
                 'attribute_map': {
                     'ledger': 'ledger',
-                    'account_id': 'accountId',
+                    'address': 'address',
                 },
                 'location_map': {
                     'ledger': 'path',
-                    'account_id': 'path',
+                    'address': 'path',
                 },
                 'collection_format_map': {
                 }
@@ -224,7 +219,7 @@ class AccountsApi(object):
         )
         self.list_accounts_endpoint = _Endpoint(
             settings={
-                'response_type': (AccountCursorResponse,),
+                'response_type': (ListAccounts200Response,),
                 'auth': [
                     'basicAuth'
                 ],
@@ -263,7 +258,7 @@ class AccountsApi(object):
                     'address':
                         (str,),
                     'metadata':
-                        ({str: (str,)},),
+                        ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),
                 },
                 'attribute_map': {
                     'ledger': 'ledger',
@@ -292,21 +287,21 @@ class AccountsApi(object):
     def add_metadata_to_account(
         self,
         ledger,
-        account_id,
+        address,
         metadata,
         **kwargs
     ):
-        """Add metadata to account  # noqa: E501
+        """Add metadata to an account.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_metadata_to_account(ledger, account_id, metadata, async_req=True)
+        >>> thread = api.add_metadata_to_account(ledger, address, metadata, async_req=True)
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
-            account_id (str): accountId
+            ledger (str): Name of the ledger.
+            address (str): Exact address of the account.
             metadata (Metadata): metadata
 
         Keyword Args:
@@ -361,8 +356,8 @@ class AccountsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['ledger'] = \
             ledger
-        kwargs['account_id'] = \
-            account_id
+        kwargs['address'] = \
+            address
         kwargs['metadata'] = \
             metadata
         return self.add_metadata_to_account_endpoint.call_with_http_info(**kwargs)
@@ -372,7 +367,7 @@ class AccountsApi(object):
         ledger,
         **kwargs
     ):
-        """Count accounts  # noqa: E501
+        """Count the accounts from a ledger.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -381,12 +376,11 @@ class AccountsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
+            ledger (str): Name of the ledger.
 
         Keyword Args:
-            after (str): pagination cursor, will return accounts after given address (in descending order). [optional]
-            address (str): account address. [optional]
-            metadata ({str: (str,)}): metadata. [optional]
+            address (str): Filter accounts by address pattern (regular expression placed between ^ and $).. [optional]
+            metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -443,20 +437,20 @@ class AccountsApi(object):
     def get_account(
         self,
         ledger,
-        account_id,
+        address,
         **kwargs
     ):
-        """Get account by address  # noqa: E501
+        """Get account by its address.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_account(ledger, account_id, async_req=True)
+        >>> thread = api.get_account(ledger, address, async_req=True)
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
-            account_id (str): accountId
+            ledger (str): Name of the ledger.
+            address (str): Exact address of the account.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -483,7 +477,7 @@ class AccountsApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AccountResponse
+            GetAccount200Response
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -510,8 +504,8 @@ class AccountsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['ledger'] = \
             ledger
-        kwargs['account_id'] = \
-            account_id
+        kwargs['address'] = \
+            address
         return self.get_account_endpoint.call_with_http_info(**kwargs)
 
     def list_accounts(
@@ -519,8 +513,9 @@ class AccountsApi(object):
         ledger,
         **kwargs
     ):
-        """List all accounts  # noqa: E501
+        """List accounts from a ledger.  # noqa: E501
 
+        List accounts from a ledger, sorted by address in descending order.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -528,12 +523,12 @@ class AccountsApi(object):
         >>> result = thread.get()
 
         Args:
-            ledger (str): ledger
+            ledger (str): Name of the ledger.
 
         Keyword Args:
-            after (str): pagination cursor, will return accounts after given address (in descending order). [optional]
-            address (str): account address. [optional]
-            metadata ({str: (str,)}): account address. [optional]
+            after (str): Pagination cursor, will return accounts after given address, in descending order.. [optional]
+            address (str): Filter accounts by address pattern (regular expression placed between ^ and $).. [optional]
+            metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -558,7 +553,7 @@ class AccountsApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AccountCursorResponse
+            ListAccounts200Response
                 If the method is called asynchronously, returns the request
                 thread.
         """

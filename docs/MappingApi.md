@@ -4,16 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_mapping**](MappingApi.md#get_mapping) | **GET** /{ledger}/mapping | Get mapping
-[**update_mapping**](MappingApi.md#update_mapping) | **PUT** /{ledger}/mapping | Put mapping
+[**get_mapping**](MappingApi.md#get_mapping) | **GET** /{ledger}/mapping | Get the mapping of a ledger.
+[**update_mapping**](MappingApi.md#update_mapping) | **PUT** /{ledger}/mapping | Update the mapping of a ledger.
 
 
 # **get_mapping**
 > MappingResponse get_mapping(ledger)
 
-Get mapping
-
-Get ledger mapping
+Get the mapping of a ledger.
 
 ### Example
 
@@ -46,11 +44,11 @@ configuration = ledgerclient.Configuration(
 with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mapping_api.MappingApi(api_client)
-    ledger = "ledger_example" # str | ledger
+    ledger = "ledger001" # str | Name of the ledger.
 
     # example passing only required values which don't have defaults set
     try:
-        # Get mapping
+        # Get the mapping of a ledger.
         api_response = api_instance.get_mapping(ledger)
         pprint(api_response)
     except ledgerclient.ApiException as e:
@@ -62,7 +60,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ledger** | **str**| ledger |
+ **ledger** | **str**| Name of the ledger. |
 
 ### Return type
 
@@ -89,9 +87,7 @@ Name | Type | Description  | Notes
 # **update_mapping**
 > MappingResponse update_mapping(ledger, mapping)
 
-Put mapping
-
-Update ledger mapping
+Update the mapping of a ledger.
 
 ### Example
 
@@ -125,19 +121,19 @@ configuration = ledgerclient.Configuration(
 with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mapping_api.MappingApi(api_client)
-    ledger = "ledger_example" # str | ledger
+    ledger = "ledger001" # str | Name of the ledger.
     mapping = Mapping(
         contracts=[
             Contract(
-                account="account_example",
+                account="users:001",
                 expr={},
             ),
         ],
-    ) # Mapping | mapping
+    ) # Mapping | 
 
     # example passing only required values which don't have defaults set
     try:
-        # Put mapping
+        # Update the mapping of a ledger.
         api_response = api_instance.update_mapping(ledger, mapping)
         pprint(api_response)
     except ledgerclient.ApiException as e:
@@ -149,8 +145,8 @@ with ledgerclient.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ledger** | **str**| ledger |
- **mapping** | [**Mapping**](Mapping.md)| mapping |
+ **ledger** | **str**| Name of the ledger. |
+ **mapping** | [**Mapping**](Mapping.md)|  |
 
 ### Return type
 

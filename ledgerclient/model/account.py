@@ -83,10 +83,8 @@ class Account(ModelNormal):
         """
         return {
             'address': (str,),  # noqa: E501
-            'balances': ({str: (int,)},),  # noqa: E501
-            'metadata': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'type': (str,),  # noqa: E501
-            'volumes': ({str: ({str: (int,)},)},),  # noqa: E501
+            'metadata': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -96,10 +94,8 @@ class Account(ModelNormal):
 
     attribute_map = {
         'address': 'address',  # noqa: E501
-        'balances': 'balances',  # noqa: E501
-        'metadata': 'metadata',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'volumes': 'volumes',  # noqa: E501
+        'metadata': 'metadata',  # noqa: E501
     }
 
     read_only_vars = {
@@ -146,10 +142,8 @@ class Account(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            balances ({str: (int,)}): [optional]  # noqa: E501
-            metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             type (str): [optional]  # noqa: E501
-            volumes ({str: ({str: (int,)},)}): [optional]  # noqa: E501
+            metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -235,10 +229,8 @@ class Account(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            balances ({str: (int,)}): [optional]  # noqa: E501
-            metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             type (str): [optional]  # noqa: E501
-            volumes ({str: ({str: (int,)},)}): [optional]  # noqa: E501
+            metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
