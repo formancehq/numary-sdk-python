@@ -26,6 +26,8 @@ Set the metadata of a transaction by its ID.
 import time
 import ledgerclient
 from ledgerclient.api import transactions_api
+from ledgerclient.model.get_transaction404_response import GetTransaction404Response
+from ledgerclient.model.get_transaction400_response import GetTransaction400Response
 from ledgerclient.model.metadata import Metadata
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -91,14 +93,16 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty response |  -  |
+**204** | No Content |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -142,6 +146,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
     account = "users:001" # str | Filter transactions with postings involving given account, either as source or destination. (optional)
     source = "users:001" # str | Filter transactions with postings involving given account at source. (optional)
     destination = "users:001" # str | Filter transactions with postings involving given account at destination. (optional)
+    metadata = {} # {str: (bool, date, datetime, dict, float, int, list, str, none_type)} | Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -154,7 +159,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Count the transactions from a ledger.
-        api_instance.count_transactions(ledger, reference=reference, account=account, source=source, destination=destination)
+        api_instance.count_transactions(ledger, reference=reference, account=account, source=source, destination=destination, metadata=metadata)
     except ledgerclient.ApiException as e:
         print("Exception when calling TransactionsApi->count_transactions: %s\n" % e)
 ```
@@ -169,6 +174,7 @@ Name | Type | Description  | Notes
  **account** | **str**| Filter transactions with postings involving given account, either as source or destination. | [optional]
  **source** | **str**| Filter transactions with postings involving given account at source. | [optional]
  **destination** | **str**| Filter transactions with postings involving given account at destination. | [optional]
+ **metadata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**| Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. | [optional]
 
 ### Return type
 
@@ -193,7 +199,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_transaction**
-> CreateTransactionResponse create_transaction(ledger, transaction_data)
+> TransactionsResponse create_transaction(ledger, transaction_data)
 
 Create a new transaction to a ledger.
 
@@ -205,9 +211,10 @@ Create a new transaction to a ledger.
 import time
 import ledgerclient
 from ledgerclient.api import transactions_api
-from ledgerclient.model.error_response import ErrorResponse
+from ledgerclient.model.create_transaction400_response import CreateTransaction400Response
+from ledgerclient.model.transactions_response import TransactionsResponse
+from ledgerclient.model.create_transaction409_response import CreateTransaction409Response
 from ledgerclient.model.transaction_data import TransactionData
-from ledgerclient.model.create_transaction_response import CreateTransactionResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -276,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateTransactionResponse**](CreateTransactionResponse.md)
+[**TransactionsResponse**](TransactionsResponse.md)
 
 ### Authorization
 
@@ -294,13 +301,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **304** | Not modified (when preview is enabled) |  -  |
-**400** | Commit error |  -  |
-**409** | Confict |  -  |
+**400** | Bad Request |  -  |
+**409** | Conflict |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_transactions**
-> CreateTransactions200Response create_transactions(ledger, transactions)
+> TransactionsResponse create_transactions(ledger, transactions)
 
 Create a new batch of transactions to a ledger.
 
@@ -312,9 +319,10 @@ Create a new batch of transactions to a ledger.
 import time
 import ledgerclient
 from ledgerclient.api import transactions_api
-from ledgerclient.model.error_response import ErrorResponse
-from ledgerclient.model.create_transactions200_response import CreateTransactions200Response
 from ledgerclient.model.transactions import Transactions
+from ledgerclient.model.transactions_response import TransactionsResponse
+from ledgerclient.model.create_transactions400_response import CreateTransactions400Response
+from ledgerclient.model.create_transaction409_response import CreateTransaction409Response
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -376,7 +384,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateTransactions200Response**](CreateTransactions200Response.md)
+[**TransactionsResponse**](TransactionsResponse.md)
 
 ### Authorization
 
@@ -393,7 +401,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Commit error |  -  |
+**400** | Bad Request |  -  |
 **409** | Conflict |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -411,7 +419,8 @@ Get transaction from a ledger by its ID.
 import time
 import ledgerclient
 from ledgerclient.api import transactions_api
-from ledgerclient.model.error_response import ErrorResponse
+from ledgerclient.model.get_transaction404_response import GetTransaction404Response
+from ledgerclient.model.get_transaction400_response import GetTransaction400Response
 from ledgerclient.model.transaction_response import TransactionResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -474,6 +483,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -494,6 +504,7 @@ import time
 import ledgerclient
 from ledgerclient.api import transactions_api
 from ledgerclient.model.list_transactions200_response import ListTransactions200Response
+from ledgerclient.model.list_accounts400_response import ListAccounts400Response
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -517,13 +528,16 @@ with ledgerclient.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi(api_client)
     ledger = "ledger001" # str | Name of the ledger.
+    page_size = 100 # int | The maximum number of results to return per page (optional) if omitted the server will use the default value of 15
     after = "1234" # str | Pagination cursor, will return transactions after given txid (in descending order). (optional)
     reference = "ref:001" # str | Find transactions by reference field. (optional)
     account = "users:001" # str | Find transactions with postings involving given account, either as source or destination. (optional)
     source = "users:001" # str | Find transactions with postings involving given account at source. (optional)
     destination = "users:001" # str | Find transactions with postings involving given account at destination. (optional)
-    start_time = "start_time_example" # str | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). (optional)
-    end_time = "end_time_example" # str | Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). (optional)
+    start_time = "start_time_example" # str | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).  (optional)
+    end_time = "end_time_example" # str | Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).  (optional)
+    pagination_token = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==" # str | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  (optional)
+    metadata = {} # {str: (bool, date, datetime, dict, float, int, list, str, none_type)} | Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -537,7 +551,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # List transactions from a ledger.
-        api_response = api_instance.list_transactions(ledger, after=after, reference=reference, account=account, source=source, destination=destination, start_time=start_time, end_time=end_time)
+        api_response = api_instance.list_transactions(ledger, page_size=page_size, after=after, reference=reference, account=account, source=source, destination=destination, start_time=start_time, end_time=end_time, pagination_token=pagination_token, metadata=metadata)
         pprint(api_response)
     except ledgerclient.ApiException as e:
         print("Exception when calling TransactionsApi->list_transactions: %s\n" % e)
@@ -549,13 +563,16 @@ with ledgerclient.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ledger** | **str**| Name of the ledger. |
+ **page_size** | **int**| The maximum number of results to return per page | [optional] if omitted the server will use the default value of 15
  **after** | **str**| Pagination cursor, will return transactions after given txid (in descending order). | [optional]
  **reference** | **str**| Find transactions by reference field. | [optional]
  **account** | **str**| Find transactions with postings involving given account, either as source or destination. | [optional]
  **source** | **str**| Find transactions with postings involving given account at source. | [optional]
  **destination** | **str**| Find transactions with postings involving given account at destination. | [optional]
- **start_time** | **str**| Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). | [optional]
- **end_time** | **str**| Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). | [optional]
+ **start_time** | **str**| Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).  | [optional]
+ **end_time** | **str**| Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).  | [optional]
+ **pagination_token** | **str**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  | [optional]
+ **metadata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**| Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. | [optional]
 
 ### Return type
 
@@ -576,6 +593,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -592,6 +610,8 @@ Revert a ledger transaction by its ID.
 import time
 import ledgerclient
 from ledgerclient.api import transactions_api
+from ledgerclient.model.get_transaction404_response import GetTransaction404Response
+from ledgerclient.model.get_transaction400_response import GetTransaction400Response
 from ledgerclient.model.transaction_response import TransactionResponse
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -654,6 +674,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

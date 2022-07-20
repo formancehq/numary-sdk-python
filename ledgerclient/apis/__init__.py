@@ -15,6 +15,7 @@
 
 # Import APIs into API package:
 from ledgerclient.api.accounts_api import AccountsApi
+from ledgerclient.api.balances_api import BalancesApi
 from ledgerclient.api.mapping_api import MappingApi
 from ledgerclient.api.script_api import ScriptApi
 from ledgerclient.api.server_api import ServerApi

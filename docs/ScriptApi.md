@@ -46,6 +46,10 @@ with ledgerclient.ApiClient(configuration) as api_client:
     api_instance = script_api.ScriptApi(api_client)
     ledger = "ledger001" # str | Name of the ledger.
     script = Script(
+        reference="order_1234",
+        metadata=Metadata(
+            key=None,
+        ),
         plain='''vars {
 account $user
 }
