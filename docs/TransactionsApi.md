@@ -1,6 +1,6 @@
 # ledgerclient.TransactionsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://.o.numary.cloud/ledger*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,10 +30,10 @@ from ledgerclient.model.get_transaction404_response import GetTransaction404Resp
 from ledgerclient.model.get_transaction400_response import GetTransaction400Response
 from ledgerclient.model.metadata import Metadata
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -120,10 +120,10 @@ import time
 import ledgerclient
 from ledgerclient.api import transactions_api
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -216,10 +216,10 @@ from ledgerclient.model.transactions_response import TransactionsResponse
 from ledgerclient.model.create_transaction409_response import CreateTransaction409Response
 from ledgerclient.model.transaction_data import TransactionData
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -239,6 +239,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
     api_instance = transactions_api.TransactionsApi(api_client)
     ledger = "ledger001" # str | Name of the ledger.
     transaction_data = TransactionData(
+        timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
         postings=[
             Posting(
                 amount=100,
@@ -324,10 +325,10 @@ from ledgerclient.model.transactions_response import TransactionsResponse
 from ledgerclient.model.create_transactions400_response import CreateTransactions400Response
 from ledgerclient.model.create_transaction409_response import CreateTransaction409Response
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -349,6 +350,7 @@ with ledgerclient.ApiClient(configuration) as api_client:
     transactions = Transactions(
         transactions=[
             TransactionData(
+                timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
                 postings=[
                     Posting(
                         amount=100,
@@ -423,10 +425,10 @@ from ledgerclient.model.get_transaction404_response import GetTransaction404Resp
 from ledgerclient.model.get_transaction400_response import GetTransaction400Response
 from ledgerclient.model.transaction_response import TransactionResponse
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -506,10 +508,10 @@ from ledgerclient.api import transactions_api
 from ledgerclient.model.list_transactions200_response import ListTransactions200Response
 from ledgerclient.model.list_accounts400_response import ListAccounts400Response
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -614,10 +616,10 @@ from ledgerclient.model.get_transaction404_response import GetTransaction404Resp
 from ledgerclient.model.get_transaction400_response import GetTransaction400Response
 from ledgerclient.model.transaction_response import TransactionResponse
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters

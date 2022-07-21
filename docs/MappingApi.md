@@ -1,6 +1,6 @@
 # ledgerclient.MappingApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://.o.numary.cloud/ledger*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -23,10 +23,10 @@ import ledgerclient
 from ledgerclient.api import mapping_api
 from ledgerclient.model.mapping_response import MappingResponse
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -100,10 +100,10 @@ from ledgerclient.api import mapping_api
 from ledgerclient.model.mapping import Mapping
 from ledgerclient.model.mapping_response import MappingResponse
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters

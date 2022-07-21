@@ -1,6 +1,6 @@
 # ledgerclient.BalancesApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://.o.numary.cloud/ledger*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,10 +24,10 @@ from ledgerclient.api import balances_api
 from ledgerclient.model.list_accounts400_response import ListAccounts400Response
 from ledgerclient.model.get_balances200_response import GetBalances200Response
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -117,10 +117,10 @@ from ledgerclient.api import balances_api
 from ledgerclient.model.get_balances_aggregated200_response import GetBalancesAggregated200Response
 from ledgerclient.model.get_balances_aggregated400_response import GetBalancesAggregated400Response
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://.o.numary.cloud/ledger
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ledgerclient.Configuration(
-    host = "http://localhost"
+    host = "https://.o.numary.cloud/ledger"
 )
 
 # The client must configure the authentication and authorization parameters

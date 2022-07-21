@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **postings** | [**[Posting]**](Posting.md) |  | 
-**timestamp** | **datetime** |  | 
 **txid** | **int** |  | 
 **reference** | **str** |  | [optional] 
 **metadata** | [**Metadata**](Metadata.md) |  | [optional] 

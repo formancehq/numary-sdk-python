@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **postings** | [**[Posting]**](Posting.md) |  | 
+**timestamp** | **datetime** |  | [optional] 
 **reference** | **str** |  | [optional] 
 **metadata** | [**Metadata**](Metadata.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
