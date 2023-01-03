@@ -1,10 +1,12 @@
+# coding: utf-8
+
 # flake8: noqa
 
 # import all models into this package
 # if you have many models here with many references from one model to another this may
 # raise a RecursionError
 # to avoid this, import only the models that you directly need like:
-# from from ledgerclient.model.pet import Pet
+# from ledgerclient.model.pet import Pet
 # or import this package, but before doing it, use:
 # import sys
 # sys.setrecursionlimit(n)
@@ -18,32 +20,18 @@ from ledgerclient.model.config import Config
 from ledgerclient.model.config_info import ConfigInfo
 from ledgerclient.model.config_info_response import ConfigInfoResponse
 from ledgerclient.model.contract import Contract
-from ledgerclient.model.create_transaction400_response import CreateTransaction400Response
-from ledgerclient.model.create_transaction409_response import CreateTransaction409Response
-from ledgerclient.model.create_transactions400_response import CreateTransactions400Response
 from ledgerclient.model.cursor import Cursor
-from ledgerclient.model.error_code import ErrorCode
 from ledgerclient.model.error_response import ErrorResponse
-from ledgerclient.model.get_account200_response import GetAccount200Response
-from ledgerclient.model.get_account400_response import GetAccount400Response
-from ledgerclient.model.get_balances200_response import GetBalances200Response
-from ledgerclient.model.get_balances200_response_cursor import GetBalances200ResponseCursor
-from ledgerclient.model.get_balances200_response_cursor_all_of import GetBalances200ResponseCursorAllOf
-from ledgerclient.model.get_balances_aggregated200_response import GetBalancesAggregated200Response
-from ledgerclient.model.get_balances_aggregated400_response import GetBalancesAggregated400Response
-from ledgerclient.model.get_transaction400_response import GetTransaction400Response
-from ledgerclient.model.get_transaction404_response import GetTransaction404Response
+from ledgerclient.model.errors_enum import ErrorsEnum
+from ledgerclient.model.ledger_info import LedgerInfo
+from ledgerclient.model.ledger_info_response import LedgerInfoResponse
 from ledgerclient.model.ledger_storage import LedgerStorage
-from ledgerclient.model.list_accounts200_response import ListAccounts200Response
-from ledgerclient.model.list_accounts200_response_cursor import ListAccounts200ResponseCursor
-from ledgerclient.model.list_accounts200_response_cursor_all_of import ListAccounts200ResponseCursorAllOf
-from ledgerclient.model.list_accounts400_response import ListAccounts400Response
-from ledgerclient.model.list_transactions200_response import ListTransactions200Response
-from ledgerclient.model.list_transactions200_response_cursor import ListTransactions200ResponseCursor
-from ledgerclient.model.list_transactions200_response_cursor_all_of import ListTransactions200ResponseCursorAllOf
+from ledgerclient.model.log import Log
 from ledgerclient.model.mapping import Mapping
 from ledgerclient.model.mapping_response import MappingResponse
 from ledgerclient.model.metadata import Metadata
+from ledgerclient.model.migration_info import MigrationInfo
+from ledgerclient.model.post_transaction import PostTransaction
 from ledgerclient.model.posting import Posting
 from ledgerclient.model.script import Script
 from ledgerclient.model.script_result import ScriptResult
