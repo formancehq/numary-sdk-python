@@ -68,13 +68,13 @@ request_path_txid = api_client.PathParameter(
     required=True,
 )
 # body param
-SchemaForRequestBodyApplicationJson = Metadata
+SchemaForRequestBodyApplicationJsonCharsetutf8 = Metadata
 
 
 request_body_metadata = api_client.RequestBody(
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
+        'application/json; charset=utf-8': api_client.MediaType(
+            schema=SchemaForRequestBodyApplicationJsonCharsetutf8),
     },
 )
 
@@ -82,22 +82,21 @@ request_body_metadata = api_client.RequestBody(
 @dataclass
 class ApiResponseFor204(api_client.ApiResponse):
     response: urllib3.HTTPResponse
-    body: typing.Union[
-    ]
+    body: schemas.Unset = schemas.unset
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_204 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor204,
 )
-SchemaFor0ResponseBodyApplicationJson = ErrorResponse
+SchemaFor0ResponseBodyApplicationJsonCharsetutf8 = ErrorResponse
 
 
 @dataclass
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
+        SchemaFor0ResponseBodyApplicationJsonCharsetutf8,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -105,12 +104,12 @@ class ApiResponseForDefault(api_client.ApiResponse):
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+        'application/json; charset=utf-8': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJsonCharsetutf8),
     },
 )
 _all_accept_content_types = (
-    'application/json',
+    'application/json; charset=utf-8',
 )
 
 
@@ -118,8 +117,8 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _add_metadata_on_transaction_oapg(
         self,
-        content_type: typing_extensions.Literal["application/json"] = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        content_type: typing_extensions.Literal["application/json; charset=utf-8"] = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -134,7 +133,7 @@ class BaseApi(api_client.Api):
     def _add_metadata_on_transaction_oapg(
         self,
         content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -151,7 +150,7 @@ class BaseApi(api_client.Api):
         self,
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -162,7 +161,7 @@ class BaseApi(api_client.Api):
     def _add_metadata_on_transaction_oapg(
         self,
         content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -176,8 +175,8 @@ class BaseApi(api_client.Api):
 
     def _add_metadata_on_transaction_oapg(
         self,
-        content_type: str = 'application/json',
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        content_type: str = 'application/json; charset=utf-8',
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -261,8 +260,8 @@ class AddMetadataOnTransaction(BaseApi):
     @typing.overload
     def add_metadata_on_transaction(
         self,
-        content_type: typing_extensions.Literal["application/json"] = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        content_type: typing_extensions.Literal["application/json; charset=utf-8"] = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -277,7 +276,7 @@ class AddMetadataOnTransaction(BaseApi):
     def add_metadata_on_transaction(
         self,
         content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -294,7 +293,7 @@ class AddMetadataOnTransaction(BaseApi):
         self,
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -305,7 +304,7 @@ class AddMetadataOnTransaction(BaseApi):
     def add_metadata_on_transaction(
         self,
         content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -319,8 +318,8 @@ class AddMetadataOnTransaction(BaseApi):
 
     def add_metadata_on_transaction(
         self,
-        content_type: str = 'application/json',
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        content_type: str = 'application/json; charset=utf-8',
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -344,8 +343,8 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        content_type: typing_extensions.Literal["application/json"] = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        content_type: typing_extensions.Literal["application/json; charset=utf-8"] = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -360,7 +359,7 @@ class ApiForpost(BaseApi):
     def post(
         self,
         content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -377,7 +376,7 @@ class ApiForpost(BaseApi):
         self,
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -388,7 +387,7 @@ class ApiForpost(BaseApi):
     def post(
         self,
         content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -402,8 +401,8 @@ class ApiForpost(BaseApi):
 
     def post(
         self,
-        content_type: str = 'application/json',
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
+        content_type: str = 'application/json; charset=utf-8',
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,

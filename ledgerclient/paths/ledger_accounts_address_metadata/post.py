@@ -65,13 +65,13 @@ request_path_address = api_client.PathParameter(
     required=True,
 )
 # body param
-SchemaForRequestBodyApplicationJson = Metadata
+SchemaForRequestBodyApplicationJsonCharsetutf8 = Metadata
 
 
 request_body_metadata = api_client.RequestBody(
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
+        'application/json; charset=utf-8': api_client.MediaType(
+            schema=SchemaForRequestBodyApplicationJsonCharsetutf8),
     },
     required=True,
 )
@@ -80,22 +80,21 @@ request_body_metadata = api_client.RequestBody(
 @dataclass
 class ApiResponseFor204(api_client.ApiResponse):
     response: urllib3.HTTPResponse
-    body: typing.Union[
-    ]
+    body: schemas.Unset = schemas.unset
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_204 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor204,
 )
-SchemaFor0ResponseBodyApplicationJson = ErrorResponse
+SchemaFor0ResponseBodyApplicationJsonCharsetutf8 = ErrorResponse
 
 
 @dataclass
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
+        SchemaFor0ResponseBodyApplicationJsonCharsetutf8,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -103,8 +102,8 @@ class ApiResponseForDefault(api_client.ApiResponse):
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+        'application/json; charset=utf-8': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJsonCharsetutf8),
     },
 )
 _status_code_to_response = {
@@ -112,7 +111,7 @@ _status_code_to_response = {
     'default': _response_for_default,
 }
 _all_accept_content_types = (
-    'application/json',
+    'application/json; charset=utf-8',
 )
 
 
@@ -120,8 +119,8 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _add_metadata_to_account_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: typing_extensions.Literal["application/json"] = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
+        content_type: typing_extensions.Literal["application/json; charset=utf-8"] = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -135,7 +134,7 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _add_metadata_to_account_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -151,7 +150,7 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _add_metadata_to_account_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -163,7 +162,7 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _add_metadata_to_account_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -178,8 +177,8 @@ class BaseApi(api_client.Api):
 
     def _add_metadata_to_account_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: str = 'application/json',
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
+        content_type: str = 'application/json; charset=utf-8',
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -265,8 +264,8 @@ class AddMetadataToAccount(BaseApi):
     @typing.overload
     def add_metadata_to_account(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: typing_extensions.Literal["application/json"] = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
+        content_type: typing_extensions.Literal["application/json; charset=utf-8"] = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -280,7 +279,7 @@ class AddMetadataToAccount(BaseApi):
     @typing.overload
     def add_metadata_to_account(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -296,7 +295,7 @@ class AddMetadataToAccount(BaseApi):
     @typing.overload
     def add_metadata_to_account(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -308,7 +307,7 @@ class AddMetadataToAccount(BaseApi):
     @typing.overload
     def add_metadata_to_account(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -323,8 +322,8 @@ class AddMetadataToAccount(BaseApi):
 
     def add_metadata_to_account(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: str = 'application/json',
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
+        content_type: str = 'application/json; charset=utf-8',
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -348,8 +347,8 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: typing_extensions.Literal["application/json"] = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
+        content_type: typing_extensions.Literal["application/json; charset=utf-8"] = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -363,7 +362,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -379,7 +378,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -391,7 +390,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -406,8 +405,8 @@ class ApiForpost(BaseApi):
 
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: str = 'application/json',
+        body: typing.Union[SchemaForRequestBodyApplicationJsonCharsetutf8,],
+        content_type: str = 'application/json; charset=utf-8',
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
