@@ -106,7 +106,7 @@ default | [ApiResponseForDefault](#add_metadata_to_account.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
+body | Unset | body was not defined |
 headers | Unset | headers were not defined |
 
 #### add_metadata_to_account.ApiResponseForDefault

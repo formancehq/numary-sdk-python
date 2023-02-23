@@ -80,8 +80,7 @@ request_body_metadata = api_client.RequestBody(
 @dataclass
 class ApiResponseFor204(api_client.ApiResponse):
     response: urllib3.HTTPResponse
-    body: typing.Union[
-    ]
+    body: schemas.Unset = schemas.unset
     headers: schemas.Unset = schemas.unset
 
 
