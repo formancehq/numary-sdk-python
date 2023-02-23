@@ -170,14 +170,14 @@ _response_for_200 = api_client.OpenApiResponse(
         count_parameter,
     ]
 )
-SchemaFor0ResponseBodyApplicationJson = ErrorResponse
+SchemaFor0ResponseBodyApplicationJsonCharsetutf8 = ErrorResponse
 
 
 @dataclass
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
+        SchemaFor0ResponseBodyApplicationJsonCharsetutf8,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -185,12 +185,12 @@ class ApiResponseForDefault(api_client.ApiResponse):
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+        'application/json; charset=utf-8': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJsonCharsetutf8),
     },
 )
 _all_accept_content_types = (
-    'application/json',
+    'application/json; charset=utf-8',
 )
 
 
