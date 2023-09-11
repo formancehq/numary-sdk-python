@@ -67,14 +67,14 @@ request_path_txid = api_client.PathParameter(
     schema=TxidSchema,
     required=True,
 )
-SchemaFor200ResponseBodyApplicationJsonCharsetutf8 = TransactionResponse
+SchemaFor200ResponseBodyApplicationJson = TransactionResponse
 
 
 @dataclass
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJsonCharsetutf8,
+        SchemaFor200ResponseBodyApplicationJson,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -82,18 +82,18 @@ class ApiResponseFor200(api_client.ApiResponse):
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json; charset=utf-8': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJsonCharsetutf8),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor200ResponseBodyApplicationJson),
     },
 )
-SchemaFor0ResponseBodyApplicationJsonCharsetutf8 = ErrorResponse
+SchemaFor0ResponseBodyApplicationJson = ErrorResponse
 
 
 @dataclass
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJsonCharsetutf8,
+        SchemaFor0ResponseBodyApplicationJson,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -101,12 +101,12 @@ class ApiResponseForDefault(api_client.ApiResponse):
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json; charset=utf-8': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJsonCharsetutf8),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJson),
     },
 )
 _all_accept_content_types = (
-    'application/json; charset=utf-8',
+    'application/json',
 )
 
 
