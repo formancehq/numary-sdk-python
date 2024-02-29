@@ -6,12 +6,12 @@ import enum
 
 
 class TagValues(str, enum.Enum):
+    LEDGER = "Ledger"
     ACCOUNTS = "Accounts"
     BALANCES = "Balances"
-    LEDGER = "Ledger"
-    LOGS = "Logs"
-    MAPPING = "Mapping"
-    SCRIPT = "Script"
-    SERVER = "Server"
-    STATS = "Stats"
     TRANSACTIONS = "Transactions"
+    SERVER = "Server"
+    MAPPING = "Mapping"
+    LOGS = "Logs"
+    STATS = "Stats"
+    SCRIPT = "Script"
