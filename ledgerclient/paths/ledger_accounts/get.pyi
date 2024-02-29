@@ -44,12 +44,8 @@ class PageSizeSchema(
 AfterSchema = schemas.StrSchema
 AddressSchema = schemas.StrSchema
 MetadataSchema = schemas.DictSchema
-
-
-class BalanceSchema(
-    schemas.Int64Schema
-):
-    pass
+BalanceSchema = schemas.Int64Schema
+BalanceAssetSchema = schemas.StrSchema
 
 
 class BalanceOperatorSchema(
@@ -126,6 +122,7 @@ RequestOptionalQueryParams = typing_extensions.TypedDict(
         'address': typing.Union[AddressSchema, str, ],
         'metadata': typing.Union[MetadataSchema, dict, frozendict.frozendict, ],
         'balance': typing.Union[BalanceSchema, decimal.Decimal, int, ],
+        'balanceAsset': typing.Union[BalanceAssetSchema, str, ],
         'balanceOperator': typing.Union[BalanceOperatorSchema, str, ],
         'balance_operator': typing.Union[BalanceOperatorSchema, str, ],
         'cursor': typing.Union[CursorSchema, str, ],
@@ -173,6 +170,12 @@ request_query_balance = api_client.QueryParameter(
     name="balance",
     style=api_client.ParameterStyle.FORM,
     schema=BalanceSchema,
+    explode=True,
+)
+request_query_balance_asset = api_client.QueryParameter(
+    name="balanceAsset",
+    style=api_client.ParameterStyle.FORM,
+    schema=BalanceAssetSchema,
     explode=True,
 )
 request_query_balance_operator = api_client.QueryParameter(
@@ -225,14 +228,14 @@ request_path_ledger = api_client.PathParameter(
     schema=LedgerSchema,
     required=True,
 )
-SchemaFor200ResponseBodyApplicationJsonCharsetutf8 = AccountsCursorResponse
+SchemaFor200ResponseBodyApplicationJson = AccountsCursorResponse
 
 
 @dataclass
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJsonCharsetutf8,
+        SchemaFor200ResponseBodyApplicationJson,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -240,18 +243,18 @@ class ApiResponseFor200(api_client.ApiResponse):
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json; charset=utf-8': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJsonCharsetutf8),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor200ResponseBodyApplicationJson),
     },
 )
-SchemaFor0ResponseBodyApplicationJsonCharsetutf8 = ErrorResponse
+SchemaFor0ResponseBodyApplicationJson = ErrorResponse
 
 
 @dataclass
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJsonCharsetutf8,
+        SchemaFor0ResponseBodyApplicationJson,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -259,12 +262,12 @@ class ApiResponseForDefault(api_client.ApiResponse):
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json; charset=utf-8': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJsonCharsetutf8),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJson),
     },
 )
 _all_accept_content_types = (
-    'application/json; charset=utf-8',
+    'application/json',
 )
 
 
@@ -349,6 +352,7 @@ class BaseApi(api_client.Api):
             request_query_address,
             request_query_metadata,
             request_query_balance,
+            request_query_balance_asset,
             request_query_balance_operator,
             request_query_balance_operator2,
             request_query_cursor,
