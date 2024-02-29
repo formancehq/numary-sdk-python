@@ -30,6 +30,32 @@ from ledgerclient.model.transaction_response import TransactionResponse
 
 from . import path
 
+# Query params
+DisableChecksSchema = schemas.BoolSchema
+RequestRequiredQueryParams = typing_extensions.TypedDict(
+    'RequestRequiredQueryParams',
+    {
+    }
+)
+RequestOptionalQueryParams = typing_extensions.TypedDict(
+    'RequestOptionalQueryParams',
+    {
+        'disableChecks': typing.Union[DisableChecksSchema, bool, ],
+    },
+    total=False
+)
+
+
+class RequestQueryParams(RequestRequiredQueryParams, RequestOptionalQueryParams):
+    pass
+
+
+request_query_disable_checks = api_client.QueryParameter(
+    name="disableChecks",
+    style=api_client.ParameterStyle.FORM,
+    schema=DisableChecksSchema,
+    explode=True,
+)
 # Path params
 LedgerSchema = schemas.StrSchema
 
@@ -73,14 +99,14 @@ request_path_txid = api_client.PathParameter(
     schema=TxidSchema,
     required=True,
 )
-SchemaFor200ResponseBodyApplicationJsonCharsetutf8 = TransactionResponse
+SchemaFor200ResponseBodyApplicationJson = TransactionResponse
 
 
 @dataclass
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJsonCharsetutf8,
+        SchemaFor200ResponseBodyApplicationJson,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -88,18 +114,18 @@ class ApiResponseFor200(api_client.ApiResponse):
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json; charset=utf-8': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJsonCharsetutf8),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor200ResponseBodyApplicationJson),
     },
 )
-SchemaFor0ResponseBodyApplicationJsonCharsetutf8 = ErrorResponse
+SchemaFor0ResponseBodyApplicationJson = ErrorResponse
 
 
 @dataclass
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJsonCharsetutf8,
+        SchemaFor0ResponseBodyApplicationJson,
     ]
     headers: schemas.Unset = schemas.unset
 
@@ -107,8 +133,8 @@ class ApiResponseForDefault(api_client.ApiResponse):
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json; charset=utf-8': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJsonCharsetutf8),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJson),
     },
 )
 _status_code_to_response = {
@@ -116,7 +142,7 @@ _status_code_to_response = {
     'default': _response_for_default,
 }
 _all_accept_content_types = (
-    'application/json; charset=utf-8',
+    'application/json',
 )
 
 
@@ -124,6 +150,7 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _revert_transaction_oapg(
         self,
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -138,6 +165,7 @@ class BaseApi(api_client.Api):
     def _revert_transaction_oapg(
         self,
         skip_deserialization: typing_extensions.Literal[True],
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -147,6 +175,7 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _revert_transaction_oapg(
         self,
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -160,6 +189,7 @@ class BaseApi(api_client.Api):
 
     def _revert_transaction_oapg(
         self,
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -172,6 +202,7 @@ class BaseApi(api_client.Api):
             api_response.body and api_response.headers will not be deserialized into schema
             class instances
         """
+        self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
         used_path = path.value
 
@@ -188,6 +219,19 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
+
+        prefix_separator_iterator = None
+        for parameter in (
+            request_query_disable_checks,
+        ):
+            parameter_data = query_params.get(parameter.name, schemas.unset)
+            if parameter_data is schemas.unset:
+                continue
+            if prefix_separator_iterator is None:
+                prefix_separator_iterator = parameter.get_prefix_separator_iterator()
+            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+            for serialized_value in serialized_data.values():
+                used_path += serialized_value
 
         _headers = HTTPHeaderDict()
         # TODO add cookie handling
@@ -232,6 +276,7 @@ class RevertTransaction(BaseApi):
     @typing.overload
     def revert_transaction(
         self,
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -246,6 +291,7 @@ class RevertTransaction(BaseApi):
     def revert_transaction(
         self,
         skip_deserialization: typing_extensions.Literal[True],
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -255,6 +301,7 @@ class RevertTransaction(BaseApi):
     @typing.overload
     def revert_transaction(
         self,
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -268,6 +315,7 @@ class RevertTransaction(BaseApi):
 
     def revert_transaction(
         self,
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -275,6 +323,7 @@ class RevertTransaction(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._revert_transaction_oapg(
+            query_params=query_params,
             path_params=path_params,
             accept_content_types=accept_content_types,
             stream=stream,
@@ -289,6 +338,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -303,6 +353,7 @@ class ApiForpost(BaseApi):
     def post(
         self,
         skip_deserialization: typing_extensions.Literal[True],
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -312,6 +363,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -325,6 +377,7 @@ class ApiForpost(BaseApi):
 
     def post(
         self,
+        query_params: RequestQueryParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -332,6 +385,7 @@ class ApiForpost(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._revert_transaction_oapg(
+            query_params=query_params,
             path_params=path_params,
             accept_content_types=accept_content_types,
             stream=stream,
